@@ -7,6 +7,7 @@
 
 ## 📋 Table of Contents
 
+- [Prerequisites & Learning Roadmap](#-prerequisites--learning-roadmap)
 - [Overview](#-overview)
 - [Demo](#-demo)
 - [Project Structure](#-project-structure)
@@ -21,11 +22,27 @@
   - [5. Latency Benchmark](#5-latency-benchmark)
   - [6. Run Demo](#6-run-demo)
 - [Evaluation Results](#-evaluation-results)
+- [License](#-license)
 - [Acknowledgements](#-acknowledgements)
 
 ---
 
+## 🎓 Prerequisites & Learning Roadmap
+
+New to multi-modal AI? Read [`LEARNING_ROADMAP.md`](./LEARNING_ROADMAP.md) first.
+
+It covers every concept you need — organized by priority:
+
+| Priority | Concepts |
+|---|---|
+| 🔴 Must Know | Transformer/Attention · ViT · LLaVA architecture · QLoRA · VQA task |
+| 🟡 Should Know | PyTorch · BLEU score · Medical imaging modalities · HuggingFace |
+| 🟢 Nice to Know | CLIP contrastive learning · Latency percentiles · Gradio deployment |
+
+---
+
 ## 🔍 Overview
+
 
 This project builds a **Visual Question Answering (VQA)** system for medical diagnostic support. Given a radiology image and a natural language question, the system generates a clinically relevant answer.
 
