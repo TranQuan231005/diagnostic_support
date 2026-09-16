@@ -21,24 +21,59 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ------------------------------------------------------------------------------
+MEDICAL & CLINICAL SAFETY DISCLAIMER (CRITICAL)
+------------------------------------------------------------------------------
 
-THIRD-PARTY NOTICES
+This repository and any derived models, weights, code, and documentation are
+developed strictly as an ACADEMIC RESEARCH AND EDUCATIONAL PROTOTYPE.
+
+1. NOT A MEDICAL DEVICE: This software is NOT certified or approved as a
+   Software as a Medical Device (SaMD) by the U.S. FDA, EMA, or any other
+   health authority.
+2. NO CLINICAL DIAGNOSIS: The outputs, answers, and classifications generated
+   by the system must NEVER be used for clinical diagnosis, patient triage,
+   treatment planning, or direct patient care.
+3. NO DOCTOR-PATIENT RELATIONSHIP: The developers, contributors, and affiliated
+   institutions assume no liability or responsibility for any clinical
+   decisions or health outcomes resulting from the use of this software.
+
+------------------------------------------------------------------------------
+THIRD-PARTY LICENSES & DATASET ATTRIBUTIONS
 ------------------------------------------------------------------------------
 
 1. VQA-Med-2019 Dataset
-   - Q&A Annotations: Creative Commons Attribution 4.0 International (CC BY 4.0)
+   - Authors: Asma Ben Abacha, Sadid A. Hasan, Vivek V. Datla, Joey Liu,
+     Dina Demner-Fushman, Henning Müller (ImageCLEF 2019).
+   - Q&A Annotations: Creative Commons Attribution 4.0 International (CC BY 4.0).
      https://creativecommons.org/licenses/by/4.0/
-   - Radiology Images: From MedPix, U.S. National Library of Medicine (NLM)
-     Restricted to non-commercial research and educational use only.
+   - Radiology Images: Sourced from MedPix®, U.S. National Library of
+     Medicine (NLM), National Institutes of Health (NIH).
+     RESTRICTION: Strictly for non-commercial educational and scientific
+     research purposes only. Commercial use or redistribution of raw images
+     is prohibited under MedPix terms of service.
      https://medpix.nlm.nih.gov
+   - Citation Requirement:
+     @Inproceedings{ImageCLEFVQA-Med2019,
+         author = {Asma {Ben Abacha} and Sadid A. Hasan and Vivek V. Datla and Joey Liu and Dina Demner-Fushman and Henning M\"uller},
+         title = {VQA-Med: Overview of the Medical Visual Question Answering Task at ImageCLEF 2019},
+         booktitle = {CLEF 2019 Working Notes},
+         series = {{CEUR} Workshop Proceedings},
+         year = {2019},
+         publisher = {CEUR-WS.org},
+         address = {Lugano, Switzerland}
+     }
 
-2. LLaVA-1.5 Base Model
-   - License: Apache License 2.0
-     https://github.com/haotian-liu/LLaVA/blob/main/LICENSE
+2. LLaVA-1.5 Base Model & Vision Encoders
+   - LLaVA Codebase: Apache License 2.0 (https://github.com/haotian-liu/LLaVA).
+   - Base LLM Weights (Vicuna-v1.5 / LLaMA-2): Governed by the Meta LLaMA 2
+     Community License Agreement and Vicuna / ShareGPT non-commercial research
+     terms of use.
+   - CLIP Vision Encoder (OpenAI ViT-L/14): MIT License.
 
-3. Fine-tuned Model Weights (checkpoints/)
-   - Derived from training on MedPix images.
-   - Restricted to non-commercial research and educational use only.
-   - Do NOT use in production clinical or commercial deployments.
+3. Fine-Tuned Model Weights & Checkpoints (checkpoints/)
+   - The fine-tuned LoRA adapters and model checkpoints are composite works
+     derived from training on MedPix images and Vicuna/LLaMA-2 base weights.
+   - RESTRICTION: Non-commercial academic research and educational evaluation ONLY.
+   - Commercial deployment, resale, or clinical utilization is strictly prohibited.
 
 ------------------------------------------------------------------------------
