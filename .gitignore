@@ -1,0 +1,24 @@
+# Dataset & raw archives
+VQA-Med-2019/
+VQA-Med-2019*/
+*.zip
+*.tar.gz
+
+# Data directories
+data/raw/
+data/processed/
+
+# Checkpoints & Model weights
+checkpoints/
+*.pt
+*.bin
+*.safetensors
+
+# Environment & IDE
+.env
+.venv/
+env/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
