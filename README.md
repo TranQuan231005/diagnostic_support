@@ -81,52 +81,73 @@ Upload a radiology image → Type your question → Get an AI-generated answer
 ```
 diagnostic_support/
 │
-├── 📓 notebooks/
-│   └── train_llava_vqamed.ipynb      # Google Colab training notebook (run in cloud)
+├── 📂 .agents/                       # AI Agent workspace configuration & governance
+│   └── rules/
+│       └── AI_AGENT_RULES.md         # Operational rules & engineering guardrails
 │
-├── 📦 src/
+├── 📂 VQA-Med-2019/                  # Official Medical VQA 2019 Benchmark Dataset
+│   ├── ImageClef-2019-VQA-Med-Training/
+│   │   ├── All_QA_Pairs_train.txt    # 12,792 Training QA pairs (All categories)
+│   │   ├── train_ImageIDs.txt        # 3,200 unique training image identifiers
+│   │   ├── QAPairsByCategory/        # Modality (C1), Plane (C2), Organ (C3), Abnormality (C4)
+│   │   │   ├── C1_Modality_train.txt
+│   │   │   ├── C2_Plane_train.txt
+│   │   │   ├── C3_Organ_train.txt
+│   │   │   └── C4_Abnormality_train.txt
+│   │   └── Train_images/             # 3,200 training radiology images (.jpg)
+│   ├── ImageClef-2019-VQA-Med-Validation/
+│   │   ├── All_QA_Pairs_val.txt      # 2,000 Validation QA pairs
+│   │   ├── val_ImageIDs.txt          # 500 unique validation image identifiers
+│   │   ├── QAPairsByCategory/
+│   │   │   ├── C1_Modality_val.txt
+│   │   │   ├── C2_Plane_val.txt
+│   │   │   ├── C3_Organ_val.txt
+│   │   │   └── C4_Abnormality_val.txt
+│   │   └── Val_images/               # 500 validation radiology images (.jpg)
+│   ├── VQAMed2019Test/
+│   │   ├── README-VQA-Med-2019-TestSet.txt
+│   │   ├── VQAMed2019_Test_Questions.txt               # 500 test questions
+│   │   ├── VQAMed2019_Test_Questions_w_Ref_Answers.txt # Test questions with reference answers
+│   │   └── VQAMed2019_Test_Images/                     # 500 test radiology images (.jpg)
+│   ├── README-VQA-Med-2019-Data.txt  # Dataset specifications and annotations info
+│   ├── README.md                     # Dataset documentation
+│   └── trial.ipynb                   # Dataset exploration & EDA notebook
+│
+├── 📓 notebooks/                     # Colab & Jupyter experimentation notebooks
+│   └── train_llava_vqamed.ipynb      # Google Colab training notebook (LLaVA + QLoRA)
+│
+├── 📦 src/                           # Core implementation source code
 │   ├── data/
-│   │   ├── download_dataset.py       # Download VQA-Med-2019 from Zenodo
-│   │   ├── preprocess.py             # Convert raw data → LLaVA instruction format
-│   │   └── dataset.py                # PyTorch Dataset class
-│   │
+│   │   ├── download_dataset.py       # Dataset fetch utility
+│   │   ├── preprocess.py             # Convert raw data → LLaVA instruction JSON format
+│   │   └── dataset.py                # PyTorch Dataset & DataLoader
 │   ├── model/
-│   │   ├── load_model.py             # Load LLaVA-1.5-7B + apply QLoRA config
-│   │   └── train.py                  # HuggingFace Trainer training loop
-│   │
+│   │   ├── load_model.py             # Load LLaVA-1.5-7B + QLoRA 4-bit configuration
+│   │   └── train.py                  # Training pipeline & loss logging
 │   ├── evaluation/
-│   │   ├── evaluate.py               # BLEU-1 + Accuracy evaluation on val set
-│   │   ├── metrics.py                # BLEU and exact match implementations
-│   │   └── benchmark_latency.py     # Per-stage latency benchmarking (8 stages × 5 periods)
-│   │
+│   │   ├── evaluate.py               # BLEU-1 + Accuracy evaluation pipeline
+│   │   ├── metrics.py                # Metric calculations (BLEU, Exact Match)
+│   │   └── benchmark_latency.py      # Latency benchmarking (8 stages × 5 periods)
 │   └── inference/
-│       └── predict.py                # Single-image inference script
+│       └── predict.py                # End-to-end single-image inference script
 │
-├── 🖥️ demo/
-│   └── app.py                        # Gradio demo (HuggingFace Spaces)
+├── 🖥️ demo/                          # User interface & web deployment
+│   └── app.py                        # Interactive Gradio demo (HuggingFace Spaces)
 │
-├── 📄 data/                          # (gitignored) Raw & processed dataset
-│   ├── raw/                          # Downloaded from Zenodo
-│   │   ├── train/
-│   │   │   ├── images/
-│   │   │   └── QAPairs_train.txt
-│   │   └── val/
-│   │       ├── images/
-│   │       └── QAPairs_val.txt
-│   └── processed/
-│       ├── train.json                # LLaVA instruction-tuning format
-│       └── val.json
-│
-├── 🤖 checkpoints/                   # (gitignored) Saved model weights
+├── 🤖 checkpoints/                   # (gitignored) Saved LoRA adapter weights
 │   └── llava-vqamed-qlora/
 │
-├── 📊 results/
-│   ├── evaluation_report.txt         # BLEU + Accuracy results
-│   └── latency_benchmark.txt         # Full latency report (all stages × periods)
+├── 📊 results/                       # Evaluation benchmarks and reports
+│   ├── evaluation_report.txt         # BLEU + Accuracy evaluation scores
+│   └── latency_benchmark.txt         # Per-stage latency benchmark results
 │
-├── requirements.txt                  # Python dependencies
-├── .gitignore
-└── README.md                         # This file
+├── 📄 LEARNING_ROADMAP.md            # Comprehensive concept roadmap & technical primer
+├── 📄 plan.md                        # 9-day sprint execution plan & RACI matrix
+├── 📄 Rule chung de su dung AI trong phan.md # General AI usage policy
+├── 📄 Topic.pdf                      # Project assignment & specifications
+├── 📄 LICENSE                        # MIT License & multi-tiered terms
+├── 📄 README.md                      # Main project documentation (this file)
+└── 📄 .gitignore                     # Git exclusion rules
 ```
 
 ---
