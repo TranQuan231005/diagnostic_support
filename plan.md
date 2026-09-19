@@ -78,17 +78,17 @@ The goal is to deliver an end-to-end multi-modal diagnostic support system that:
   - Review LLaVA architecture: CLIP ViT-L/14 → 2-layer MLP projection → Mistral/LLaMA-7B causal LM.
   - Understand QLoRA 4-bit NF4 quantization mechanics and why it fits Google Colab T4 (15GB VRAM).
 * **Individual Deliverables:**
-  - **Member 1:** 
+  - [ ] **Member 1:** 
     - Write `src/data/download_dataset.py` to fetch VQA-Med-2019 from Zenodo.
     - Inspect raw directories (`data/raw/train/`, `data/raw/val/`) and verify image counts and QA pairs.
-  - **Member 2:** 
+  - [ ] **Member 2:** 
     - Create `notebooks/train_llava_vqamed.ipynb` on Google Colab with T4 GPU runtime.
     - Verify library installations (`transformers`, `peft`, `bitsandbytes`, `accelerate`).
     - Test loading base model `liuhaotian/llava-v1.5-7b` in 4-bit precision.
-  - **Member 3:** 
+  - [ ] **Member 3:** 
     - Create `src/evaluation/metrics.py` (implement BLEU-1 via NLTK/SacreBLEU and exact match Accuracy).
     - Write basic unit tests for evaluation metrics.
-  - **Member 4:** 
+  - [ ] **Member 4:** 
     - Create repository layout (`src/`, `notebooks/`, `demo/`, `results/`, `checkpoints/`).
     - Create initial Gradio mockup `demo/app.py` with placeholder response and upload box.
     - Create Hugging Face Space placeholder.
@@ -99,7 +99,7 @@ The goal is to deliver an end-to-end multi-modal diagnostic support system that:
 #### 📅 **Day 2: Data Preprocessing, PyTorch Dataset & Zero-Shot Baseline**
 * **🎯 Phase Objective:** Complete data formatting and establish the baseline Zero-shot performance benchmark.
 * **Individual Deliverables:**
-  - **Member 1:** 
+  - [ ] **Member 1:** 
     - Implement `src/data/preprocess.py` to parse raw QA text files into standard LLaVA format:
       ```json
       [
@@ -115,14 +115,14 @@ The goal is to deliver an end-to-end multi-modal diagnostic support system that:
       ```
     - Generate `data/processed/train.json` (12,792 pairs) and `data/processed/val.json` (2,000 pairs).
     - Generate EDA summary (distribution of categories: Modality, Plane, Organ System, Abnormality).
-  - **Member 2:** 
+  - [ ] **Member 2:** 
     - Implement `src/model/load_model.py` with `BitsAndBytesConfig` (4-bit, `nf4`, `torch.float16`).
     - Configure LoRA target modules (`q_proj`, `v_proj`, `k_proj`, `o_proj`, `r=16`, `alpha=32`).
     - Verify forward pass with dummy batch on Colab.
-  - **Member 3:** 
+  - [ ] **Member 3:** 
     - Run **Zero-shot LLaVA-1.5-7B** on the validation set (`data/processed/val.json`).
     - Record initial zero-shot BLEU-1 and Accuracy scores as the benchmark baseline.
-  - **Member 4:** 
+  - [ ] **Member 4:** 
     - Finalize Gradio layout with tabs (Diagnostic Query, Sample Gallery, Architecture Overview, Team Info).
     - Prepare 4 curated sample radiology images (1 Modality, 1 Plane, 1 Organ, 1 Abnormality) for demo gallery.
 * **🚦 Daily Sync Gate (05:30 PM):** `data/processed/train.json` verified by Member 2; Baseline Zero-Shot numbers logged by Member 3.
@@ -134,14 +134,14 @@ The goal is to deliver an end-to-end multi-modal diagnostic support system that:
 #### 📅 **Day 3: Training Pipeline Launch & Inference Engine Scaffold**
 * **🎯 Phase Objective:** Initiate model fine-tuning on Colab and implement modular inference.
 * **Individual Deliverables:**
-  - **Member 1:** 
+  - [ ] **Member 1:** 
     - Implement PyTorch `Dataset` and `DataLoader` in `src/data/dataset.py` with token truncation and padding checks.
     - Write data validation sanity check script to catch corrupted/missing images.
-  - **Member 2:** 
+  - [ ] **Member 2:** 
     - Implement training loop in `notebooks/train_llava_vqamed.ipynb` using HuggingFace `Trainer` / SFT.
     - Setup training parameters: `epochs=3`, `per_device_train_batch_size=2`, `gradient_accumulation_steps=8` (effective batch size = 16), `lr=2e-4`, `warmup_ratio=0.03`, `fp16=True`.
     - Run Trial 1 (Epoch 1) and inspect loss curve convergence.
-  - **Member 3:** 
+  - [ ] **Member 3:** 
     - Scaffold `src/evaluation/benchmark_latency.py` with `benchmark_timer` context manager.
     - Define timing hooks for the 8 pipeline stages:
       1. Image Load
@@ -152,7 +152,7 @@ The goal is to deliver an end-to-end multi-modal diagnostic support system that:
       6. LLM Prefill (Prompt + Image tokens)
       7. LLM Autoregressive Decode
       8. Detokenization & Output Clean
-  - **Member 4:** 
+  - [ ] **Member 4:** 
     - Implement `src/inference/predict.py` with command-line arguments (`--image`, `--question`, `--model_path`, `--device`).
     - Connect inference logic to dummy/zero-shot model for pipeline testing.
 * **🚦 Daily Sync Gate (05:30 PM):** Member 2 shares Colab Epoch 1 training logs; Member 3 shows timer output on test dummy input.
@@ -162,13 +162,13 @@ The goal is to deliver an end-to-end multi-modal diagnostic support system that:
 #### 📅 **Day 4: Hyperparameter Optimization & Latency Suite Buildout**
 * **🎯 Phase Objective:** Optimize training stability, prevent overfitting, and expand benchmark harnesses.
 * **Individual Deliverables:**
-  - **Member 1:** 
+  - [ ] **Member 1:** 
     - Categorize validation set into 4 sub-files or indexed lists (`modality_val.json`, `plane_val.json`, `organ_val.json`, `abnormality_val.json`) for granular metric reporting.
-  - **Member 2:** 
+  - [ ] **Member 2:** 
     - Run full 3-epoch QLoRA training on Colab T4.
     - Save intermediate checkpoints (`checkpoint-500`, `checkpoint-1000`, `checkpoint-final`) to Google Drive.
     - Track training loss and validation loss every 200 steps.
-  - **Member 3:** 
+  - [ ] **Member 3:** 
     - Build test harnesses for the 5 latency measurement periods:
       1. **Cold Start** (first 5 inferences after model initialization)
       2. **Burst Load** (50 back-to-back fast requests)
@@ -176,7 +176,7 @@ The goal is to deliver an end-to-end multi-modal diagnostic support system that:
       4. **Concurrent Requests** (simulated parallel requests)
       5. **Varied Sequence Lengths** (short vs long prompt/output tokens)
     - Implement automatic calculation of Mean, P50, P95, P99, and Std Dev.
-  - **Member 4:** 
+  - [ ] **Member 4:** 
     - Create prompt engineering templates for clinical diagnostic queries (e.g., standardizing medical question prefixes).
     - Add Gradio UI components: confidence badges, category tags, latency readout timer in demo UI.
 * **🚦 Daily Sync Gate (05:30 PM):** Checkpoint saved and verified on Google Drive; Benchmarking harness tested with simulated latency numbers.
@@ -190,15 +190,15 @@ The goal is to deliver an end-to-end multi-modal diagnostic support system that:
   - Review how the LoRA adapter is loaded on top of base LLaVA.
   - Test the fine-tuned adapter on 5 sample radiology queries live.
 * **Individual Deliverables:**
-  - **Member 1:** 
+  - [ ] **Member 1:** 
     - Review qualitative predictions from Epoch 3 and identify top 10 false positive / false negative edge cases.
-  - **Member 2:** 
+  - [ ] **Member 2:** 
     - Export final merged/standalone LoRA adapter weights (`checkpoints/llava-vqamed-qlora/`).
     - Create Hugging Face Hub model upload script or direct Colab push.
-  - **Member 3:** 
+  - [ ] **Member 3:** 
     - Run initial evaluation of fine-tuned checkpoint on validation set.
     - Compare initial scores against Day 2 Zero-Shot baseline.
-  - **Member 4:** 
+  - [ ] **Member 4:** 
     - Hook fine-tuned model checkpoint into `demo/app.py`.
     - Verify Gradio demo functions locally or in Colab Gradio tunnel.
 * **🚦 Daily Sync Gate (05:30 PM):** Full end-to-end dry run: Image Upload → Inference → Metric check verified by all 4 members.
@@ -210,22 +210,22 @@ The goal is to deliver an end-to-end multi-modal diagnostic support system that:
 #### 📅 **Day 6: Comprehensive Model Evaluation & Error Analysis**
 * **🎯 Phase Objective:** Generate definitive evaluation numbers and deep clinical error insights.
 * **Individual Deliverables:**
-  - **Member 1:** 
+  - [ ] **Member 1:** 
     - Perform deep **Clinical Error Analysis**:
       - Why did the model fail on certain Abnormality questions?
       - Assess vocabulary mismatch (e.g., synonym usage: "fracture" vs "bone break").
       - Document clinical findings and failure taxonomy.
-  - **Member 2:** 
+  - [ ] **Member 2:** 
     - Assist Member 3 with GPU runtime optimization (eval batching, memory pinning, torch.inference_mode).
     - Document model architecture hyperparameters and training compute cost in `results/training_summary.md`.
-  - **Member 3:** 
+  - [ ] **Member 3:** 
     - Execute formal evaluation on all 2,000 validation pairs using `src/evaluation/evaluate.py`.
     - Generate breakdown tables:
       - Overall BLEU-1 & Accuracy
       - Category breakdown: Modality, Plane, Organ System, Abnormality
       - Comparison table: Zero-Shot vs. Fine-Tuned LLaVA vs. Literature SOTA
     - Save report to `results/evaluation_report.txt`.
-  - **Member 4:** 
+  - [ ] **Member 4:** 
     - Refine Gradio UI with error handling (invalid file format, out-of-domain images).
     - Add example buttons for instant testing.
 * **🚦 Daily Sync Gate (05:30 PM):** `results/evaluation_report.txt` finalized and approved by all members.
@@ -235,11 +235,11 @@ The goal is to deliver an end-to-end multi-modal diagnostic support system that:
 #### 📅 **Day 7: Full-Scale Latency Benchmark & Cloud Deployment**
 * **🎯 Phase Objective:** Complete latency characterization and deploy live demo to Hugging Face Spaces.
 * **Individual Deliverables:**
-  - **Member 1:** 
+  - [ ] **Member 1:** 
     - Generate summary visualization charts (Accuracy by category bar chart, Training loss curve, Error distribution pie chart).
-  - **Member 2:** 
+  - [ ] **Member 2:** 
     - Ensure adapter weights and model config are uploaded to Hugging Face Hub (`<hf-user>/llava-vqamed-qlora`).
-  - **Member 3:** 
+  - [ ] **Member 3:** 
     - Execute full latency benchmarking script on T4 GPU:
       ```bash
       python src/evaluation/benchmark_latency.py \
@@ -249,7 +249,7 @@ The goal is to deliver an end-to-end multi-modal diagnostic support system that:
         --output_file results/latency_benchmark.txt
       ```
     - Generate latency breakdown waterfall chart (Image load vs Preprocessing vs CLIP vs MLP vs LLM Prefill vs LLM Decode).
-  - **Member 4:** 
+  - [ ] **Member 4:** 
     - Deploy Gradio app to **Hugging Face Spaces**.
     - Verify public URL accessibility and test response latency on cloud.
     - Record a 2-minute high-quality screencast video demonstrating the live system.
@@ -262,13 +262,13 @@ The goal is to deliver an end-to-end multi-modal diagnostic support system that:
 #### 📅 **Day 8: Technical Report, Slide Deck & Code Documentation**
 * **🎯 Phase Objective:** Synthesize all technical assets into the final report and presentation slides.
 * **Individual Deliverables:**
-  - **Member 1:** 
+  - [ ] **Member 1:** 
     - Draft "Dataset & Preprocessing" and "Error Analysis & Clinical Discussion" sections in Final Report.
-  - **Member 2:** 
+  - [ ] **Member 2:** 
     - Draft "Model Architecture, QLoRA Fine-Tuning & Quantization" section in Final Report.
-  - **Member 3:** 
+  - [ ] **Member 3:** 
     - Draft "Evaluation Metrics, Zero-Shot vs Fine-Tuned Results, & 8-Stage Latency Benchmarking" section in Final Report.
-  - **Member 4:** 
+  - [ ] **Member 4:** 
     - Assemble the master slide deck (12–15 slides covering: Problem Statement, Pipeline, Dataset, Architecture, Training, Results, Latency, Live Demo, Ethical & Clinical Limitations).
     - Draft "Demo System & User Interface" section in Final Report.
 * **🚦 Daily Sync Gate (05:30 PM):** Slide deck v1 and Report Draft v1 completed and reviewed collectively.
@@ -278,13 +278,13 @@ The goal is to deliver an end-to-end multi-modal diagnostic support system that:
 #### 📅 **Day 9: Final Rehearsal, Code Freeze & Deliverable Hand-In**
 * **🎯 Phase Objective:** Final verification, repository freeze, and presentation rehearsal.
 * **Team Joint Activities:**
-  - **09:00 - 11:00 AM:** Full presentation rehearsal (all 4 members present their respective sections).
-  - **11:00 - 01:00 PM:** Peer-review and polish slide deck and technical report.
-  - **02:00 - 04:00 PM:** **Code Freeze**:
+  - [ ] **09:00 - 11:00 AM:** Full presentation rehearsal (all 4 members present their respective sections).
+  - [ ] **11:00 - 01:00 PM:** Peer-review and polish slide deck and technical report.
+  - [ ] **02:00 - 04:00 PM:** **Code Freeze**:
     - Clean up repository (remove temp logs, check `.gitignore`, format code with `black` / `flake8`).
     - Verify `README.md` links, sample commands, and licenses.
     - Tag release `v1.0.0` on GitHub.
-  - **04:00 - 05:00 PM:** Final submission package verification.
+  - [ ] **04:00 - 05:00 PM:** Final submission package verification.
 * **🎉 Final Deliverables Complete!**
 
 ---

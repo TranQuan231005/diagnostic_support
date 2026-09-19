@@ -1,0 +1,40 @@
+{
+  "total_samples": 2000,
+  "overall": {
+    "exact_match": 0.3335,
+    "bleu_1": 0.3369,
+    "bleu_2": 0.251,
+    "rouge_l": 0.3379
+  },
+  "by_category": {
+    "Modality": {
+      "samples": 500,
+      "exact_match": 0.334,
+      "bleu_1": 0.3475,
+      "bleu_2": 0.2411,
+      "rouge_l": 0.3515
+    },
+    "Plane": {
+      "samples": 500,
+      "exact_match": 0.334,
+      "bleu_1": 0.334,
+      "bleu_2": 0.1727,
+      "rouge_l": 0.334
+    },
+    "Organ System": {
+      "samples": 500,
+      "exact_match": 0.332,
+      "bleu_1": 0.332,
+      "bleu_2": 0.2793,
+      "rouge_l": 0.332
+    },
+    "Abnormality": {
+      "samples": 500,
+      "exact_match": 0.334,
+      "bleu_1": 0.334,
+      "bleu_2": 0.3111,
+      "rouge_l": 0.334
+    }
+  },
+  "model_name": "LLaVA-1.5-7B (Zero-Shot)"
+}
