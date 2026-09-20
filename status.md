@@ -11,16 +11,16 @@
 ## 📈 Overall Project Progress
 
 ```
-Sprint Progress: [███░░░░░░░] 17% Complete (Day 1 of 3)
+Sprint Progress: [██████░░░░] 28% Complete (Day 1 of 3)
 ```
 
 | Metric | Target | Current Status | Health |
 |---|---|---|:---:|
 | **Days Remaining** | 3 Days | 3 Days | 🟡 Tight |
-| **Completed Tasks** | 3 / 18 | 3 Completed (D1-T1, D1-T2, D1-T5) | 🟢 In Motion |
-| **In Progress Tasks** | — | 2 Active (D1-T3, D1-T6) | 🟡 Active |
+| **Completed Tasks** | 5 / 18 | 5 Completed (D1-T1, D1-T2, D1-T3, D1-T4, D1-T5) | 🟢 On Track |
+| **In Progress Tasks** | — | 1 Active (D1-T6) | 🟡 Active |
 | **Blockers / Risks** | 0 Critical | 2 Monitored (Colab T4 limits, Zenodo DL speed) | 🟢 Managed |
-| **Deliverables Completed** | 0 / 8 Key Artifacts | 0 / 8 | ⚪ Pending |
+| **Deliverables Completed** | 2 / 8 Key Artifacts | 2 / 8 Completed (Data, Evaluation, Model Engine) | 🟢 In Motion |
 
 ---
 
@@ -36,9 +36,9 @@ Sprint Progress: [███░░░░░░░] 17% Complete (Day 1 of 3)
 
 | Member | Domain & Ownership | Primary Tools / Deliverables |
 |---|---|---|
-| **Member 1 (M1)** | **Data Engineering & Preprocessing** | `data/processed/`, `prepare_data.py`, `train.json`, `val.json` |
-| **Member 2 (M2)** | **Model & QLoRA Fine-Tuning** | `train_llava_vqamed.ipynb`, 4-bit NF4, PEFT, Hugging Face Hub Adapter |
-| **Member 3 (M3)** | **Evaluation & 8-Stage Benchmarking** | `evaluate.py` (BLEU-1, Acc), `benchmark_latency.py` (P50/P95/P99) |
+| **Member 1 (M1)** | **Data Engineering & Preprocessing** | `data/processed/`, `preprocess.py`, `train.json`, `val.json` |
+| **Member 2 (M2)** | **Model & QLoRA Fine-Tuning** | `src/model/load_model.py`, `01_env_setup_and_model_sanity_check.ipynb`, 4-bit NF4, PEFT |
+| **Member 3 (M3)** | **Evaluation & 8-Stage Benchmarking** | `src/evaluation/evaluate.py` (BLEU-1, Acc), `benchmark_latency.py` (P50/P95/P99) |
 | **Member 4 (M4)** | **Inference, Gradio UI & Deployment** | `predict.py`, `demo/app.py`, Hugging Face Spaces, Final Report & Slides |
 
 ---
@@ -52,8 +52,8 @@ Sprint Progress: [███░░░░░░░] 17% Complete (Day 1 of 3)
 |:---:|:---:|:---:|---|:---:|---|---|
 | [X] | **D1-T1** | **M1** | Download & extract VQA-Med-2019 dataset (Zenodo) | 🟢 `COMPLETED` | None | Raw dataset downloaded and unpacked |
 | [X] | **D1-T2** | **M1** | Convert raw QA pairs into LLaVA format (`train.json`, `val.json`) | 🟢 `COMPLETED` | D1-T1 | 12,792 train & 2,000 val QA pairs converted + category splits |
-| [ ] | **D1-T3** | **M2** | Set up Google Colab T4 environment with `transformers`, `peft`, `bitsandbytes` | 🟡 `IN_PROGRESS` | None | Validate GPU allocation & CUDA memory |
-| [ ] | **D1-T4** | **M2** | Load base LLaVA-1.5-7B in 4-bit NF4 & verify forward pass | ⚪ `NOT_STARTED` | D1-T3 | Ensure VRAM <= 5.5 GB during base loading |
+| [X] | **D1-T3** | **M2** | Set up Google Colab T4 environment with `transformers`, `peft`, `bitsandbytes` | 🟢 `COMPLETED` | None | Notebook & dependency suite in `notebooks/01_env_setup_and_model_sanity_check.ipynb` |
+| [X] | **D1-T4** | **M2** | Load base LLaVA-1.5-7B in 4-bit NF4 & verify forward pass | 🟢 `COMPLETED` | D1-T3 | `src/model/load_model.py`, `verify_forward.py` verified; 4-bit NF4 VRAM budget <= 5.5GB |
 | [X] | **D1-T5** | **M3** | Build zero-shot evaluation pipeline skeleton (`evaluate.py`) | 🟢 `COMPLETED` | None | Exact Match, BLEU-1, BLEU-2, ROUGE-L & Category Breakdowns |
 | [ ] | **D1-T6** | **M4** | Build Gradio UI mock shell & configure Hugging Face Spaces repo | 🟡 `IN_PROGRESS` | None | Create UI wireframe with image upload + QA box |
 
