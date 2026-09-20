@@ -11,16 +11,16 @@
 ## 📈 Overall Project Progress
 
 ```
-Sprint Progress: [██████░░░░] 28% Complete (Day 1 of 3)
+Sprint Progress: [███████░░░] 33% Complete (Day 1 Complete - 6/18 Tasks)
 ```
 
 | Metric | Target | Current Status | Health |
 |---|---|---|:---:|
-| **Days Remaining** | 3 Days | 3 Days | 🟡 Tight |
-| **Completed Tasks** | 5 / 18 | 5 Completed (D1-T1, D1-T2, D1-T3, D1-T4, D1-T5) | 🟢 On Track |
-| **In Progress Tasks** | — | 1 Active (D1-T6) | 🟡 Active |
-| **Blockers / Risks** | 0 Critical | 2 Monitored (Colab T4 limits, Zenodo DL speed) | 🟢 Managed |
-| **Deliverables Completed** | 2 / 8 Key Artifacts | 2 / 8 Completed (Data, Evaluation, Model Engine) | 🟢 In Motion |
+| **Days Remaining** | 3 Days | 2 Days (Day 1 Finished) | 🟢 On Schedule |
+| **Completed Tasks** | 6 / 18 | 6 Completed (D1-T1, D1-T2, D1-T3, D1-T4, D1-T5, D1-T6) | 🟢 100% Day 1 |
+| **In Progress Tasks** | — | Ready for Day 2 kickoff | 🟢 Ready |
+| **Blockers / Risks** | 0 Critical | Monitored (Colab T4 limits) | 🟢 Managed |
+| **Deliverables Completed** | 3 / 8 Key Artifacts | 3 / 8 (Data, Evaluation, Model Engine, Gradio UI Shell) | 🟢 On Track |
 
 ---
 
@@ -55,7 +55,7 @@ Sprint Progress: [██████░░░░] 28% Complete (Day 1 of 3)
 | [X] | **D1-T3** | **M2** | Set up Google Colab T4 environment with `transformers`, `peft`, `bitsandbytes` | 🟢 `COMPLETED` | None | Notebook & dependency suite in `notebooks/01_env_setup_and_model_sanity_check.ipynb` |
 | [X] | **D1-T4** | **M2** | Load base LLaVA-1.5-7B in 4-bit NF4 & verify forward pass | 🟢 `COMPLETED` | D1-T3 | `src/model/load_model.py`, `verify_forward.py` verified; 4-bit NF4 VRAM budget <= 5.5GB |
 | [X] | **D1-T5** | **M3** | Build zero-shot evaluation pipeline skeleton (`evaluate.py`) | 🟢 `COMPLETED` | None | Exact Match, BLEU-1, BLEU-2, ROUGE-L & Category Breakdowns |
-| [ ] | **D1-T6** | **M4** | Build Gradio UI mock shell & configure Hugging Face Spaces repo | 🟡 `IN_PROGRESS` | None | Create UI wireframe with image upload + QA box |
+| [X] | **D1-T6** | **M4** | Build Gradio UI mock shell & configure Hugging Face Spaces repo | 🟢 `COMPLETED` | None | Dual-engine interactive UI in `demo/app.py` with 1-click clinical presets |
 
 ---
 
