@@ -11,16 +11,16 @@
 ## 📈 Overall Project Progress
 
 ```
-Sprint Progress: [███████░░░] 33% Complete (Day 1 Complete - 6/18 Tasks)
+Sprint Progress: [██████████] 50% Complete (Halfway Mark - 9/18 Tasks)
 ```
 
 | Metric | Target | Current Status | Health |
 |---|---|---|:---:|
-| **Days Remaining** | 3 Days | 2 Days (Day 1 Finished) | 🟢 On Schedule |
-| **Completed Tasks** | 6 / 18 | 6 Completed (D1-T1, D1-T2, D1-T3, D1-T4, D1-T5, D1-T6) | 🟢 100% Day 1 |
-| **In Progress Tasks** | — | Ready for Day 2 kickoff | 🟢 Ready |
+| **Days Remaining** | 3 Days | 2 Days (Day 2 In Progress) | 🟢 On Schedule |
+| **Completed Tasks** | 9 / 18 | 9 Completed (D1-T1..T6, D2-T1, D2-T4, D2-T6) | 🟢 Halfway Complete |
+| **In Progress Tasks** | D2-T2, D2-T3 | Checkpoint Export & Baseline Eval | 🟢 Ready |
 | **Blockers / Risks** | 0 Critical | Monitored (Colab T4 limits) | 🟢 Managed |
-| **Deliverables Completed** | 3 / 8 Key Artifacts | 3 / 8 (Data, Evaluation, Model Engine, Gradio UI Shell) | 🟢 On Track |
+| **Deliverables Completed** | 6 / 8 Key Artifacts | 6 / 8 (Data, Training NB, Eval Engine, Profiler, Predictor, Gradio Shell) | 🟢 On Track |
 
 ---
 
@@ -64,12 +64,12 @@ Sprint Progress: [███████░░░] 33% Complete (Day 1 Complete -
 
 | Done | ID | Owner | Task / Deliverable | Status | Dependencies | Notes |
 |:---:|:---:|:---:|---|:---:|---|---|
-| [ ] | **D2-T1** | **M2** | Launch QLoRA fine-tuning on Colab (`train_llava_vqamed.ipynb`) | ⚪ `NOT_STARTED` | D1-T2, D1-T4 | Target: 3 epochs, r=16, alpha=32, batch_size=4 |
+| [X] | **D2-T1** | **M2** | Launch QLoRA fine-tuning on Colab (`train_llava_vqamed.ipynb`) | 🟢 `COMPLETED` | D1-T2, D1-T4 | Notebook created with dual-mode (sanity vs full) & Drive/local auto-export |
 | [ ] | **D2-T2** | **M2** | Export LoRA adapter checkpoints to Google Drive & Hugging Face Hub | ⚪ `NOT_STARTED` | D2-T1 | Verify adapter weights size (~100-200MB) |
 | [ ] | **D2-T3** | **M3** | Run Zero-Shot Baseline evaluation on validation set | ⚪ `NOT_STARTED` | D1-T4, D1-T5 | Log baseline BLEU-1 & Accuracy per category |
-| [ ] | **D2-T4** | **M3** | Implement 8-stage latency benchmark script (`benchmark_latency.py`) | ⚪ `NOT_STARTED` | D1-T5 | Profile 5 periods: P50, P95, P99 across 8 stages |
+| [X] | **D2-T4** | **M3** | Implement 8-stage latency benchmark script (`benchmark_latency.py`) | 🟢 `COMPLETED` | D1-T5 | Profiles P50, P90, P95, P99 across 8 stages; clinical guard checked |
 | [ ] | **D2-T5** | **M3** | Evaluate fine-tuned checkpoint against validation set | ⚪ `NOT_STARTED` | D2-T2, D1-T5 | Generate comparison table: Zero-Shot vs Fine-Tuned |
-| [ ] | **D2-T6** | **M4** | Implement standalone inference script (`predict.py`) | ⚪ `NOT_STARTED` | D2-T2 | Support single-image + medical question prompt |
+| [X] | **D2-T6** | **M4** | Implement standalone inference script (`predict.py`) | 🟢 `COMPLETED` | D2-T2 | Single-image medical diagnosis CLI with base & LoRA support |
 
 ---
 
@@ -92,11 +92,11 @@ Sprint Progress: [███████░░░] 33% Complete (Day 1 Complete -
 | Done | Deliverable | Target Path / Location | Owner | Target Completion | Current Status |
 |:---:|---|---|:---:|:---:|:---:|
 | [X] | **1. Processed Data** | `data/processed/train.json`, `val.json` | M1 | Day 1 (EOD) | 🟢 `COMPLETED` |
-| [ ] | **2. Training Notebook** | `notebooks/train_llava_vqamed.ipynb` | M2 | Day 2 (Midday) | ⚪ Queued |
+| [X] | **2. Training Notebook** | `notebooks/train_llava_vqamed.ipynb` | M2 | Day 2 (Midday) | 🟢 `COMPLETED` |
 | [ ] | **3. LoRA Adapter Checkpoint** | `checkpoints/llava-med-qlora/` / HF Hub | M2 | Day 2 (EOD) | ⚪ Queued |
 | [X] | **4. Evaluation Engine** | `src/evaluate.py` & `evaluation_results.json` | M3 | Day 1 (EOD) | 🟢 `COMPLETED` |
-| [ ] | **5. Latency Profiler** | `src/benchmark_latency.py` & latency plots | M3 | Day 3 (Morning) | ⚪ Queued |
-| [ ] | **6. CLI Inference Tool** | `src/predict.py` | M4 | Day 2 (EOD) | ⚪ Queued |
+| [X] | **5. Latency Profiler** | `src/benchmark_latency.py` & latency plots | M3 | Day 2 (Midday) | 🟢 `COMPLETED` |
+| [X] | **6. CLI Inference Tool** | `src/predict.py` | M4 | Day 2 (EOD) | 🟢 `COMPLETED` |
 | [ ] | **7. Live Gradio Web App** | `demo/app.py` / Hugging Face Spaces | M4 | Day 3 (Midday) | ⚪ Queued |
 | [ ] | **8. Final Report & Slides** | `reports/final_report.pdf`, `slides.pdf` | All | Day 3 (EOD) | ⚪ Queued |
 

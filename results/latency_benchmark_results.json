@@ -1,0 +1,174 @@
+{
+  "timestamp": "2026-09-23 21:43:40",
+  "num_runs": 5,
+  "warmup_runs": 1,
+  "device": "cpu",
+  "tokens_generated_avg": 16.0,
+  "tokens_per_second": 29.04,
+  "clinical_p99_compliant": true,
+  "clinical_threshold_sec": 5.0,
+  "stages": {
+    "Stage 1: Image Preprocess": {
+      "stage_name": "Stage 1: Image Preprocess",
+      "count": 5,
+      "mean_ms": 11.65,
+      "std_ms": 0.93,
+      "min_ms": 10.71,
+      "max_ms": 13.28,
+      "p50_ms": 11.47,
+      "p90_ms": 12.75,
+      "p95_ms": 13.02,
+      "p99_ms": 13.23,
+      "percent_of_total": 1.5
+    },
+    "Stage 2: Text Tokenization": {
+      "stage_name": "Stage 2: Text Tokenization",
+      "count": 5,
+      "mean_ms": 3.18,
+      "std_ms": 0.37,
+      "min_ms": 2.94,
+      "max_ms": 3.89,
+      "p50_ms": 2.95,
+      "p90_ms": 3.6,
+      "p95_ms": 3.75,
+      "p99_ms": 3.86,
+      "percent_of_total": 0.4
+    },
+    "Stage 3: Vision Encoding": {
+      "stage_name": "Stage 3: Vision Encoding",
+      "count": 5,
+      "mean_ms": 82.74,
+      "std_ms": 5.67,
+      "min_ms": 73.35,
+      "max_ms": 90.64,
+      "p50_ms": 83.32,
+      "p90_ms": 88.53,
+      "p95_ms": 89.59,
+      "p99_ms": 90.43,
+      "percent_of_total": 10.7
+    },
+    "Stage 4: Multi-Modal Projection": {
+      "stage_name": "Stage 4: Multi-Modal Projection",
+      "count": 5,
+      "mean_ms": 8.51,
+      "std_ms": 0.71,
+      "min_ms": 7.26,
+      "max_ms": 9.32,
+      "p50_ms": 8.64,
+      "p90_ms": 9.2,
+      "p95_ms": 9.26,
+      "p99_ms": 9.31,
+      "percent_of_total": 1.1
+    },
+    "Stage 5: LLM Prefill (TTFT)": {
+      "stage_name": "Stage 5: LLM Prefill (TTFT)",
+      "count": 5,
+      "mean_ms": 105.23,
+      "std_ms": 1.92,
+      "min_ms": 103.33,
+      "max_ms": 108.7,
+      "p50_ms": 104.44,
+      "p90_ms": 107.55,
+      "p95_ms": 108.12,
+      "p99_ms": 108.58,
+      "percent_of_total": 13.6
+    },
+    "Stage 6: Token Decoding": {
+      "stage_name": "Stage 6: Token Decoding",
+      "count": 5,
+      "mean_ms": 551.04,
+      "std_ms": 16.28,
+      "min_ms": 528.45,
+      "max_ms": 572.32,
+      "p50_ms": 545.78,
+      "p90_ms": 570.13,
+      "p95_ms": 571.22,
+      "p99_ms": 572.1,
+      "percent_of_total": 71.3
+    },
+    "Stage 7: Text Post-Processing": {
+      "stage_name": "Stage 7: Text Post-Processing",
+      "count": 5,
+      "mean_ms": 1.82,
+      "std_ms": 0.26,
+      "min_ms": 1.45,
+      "max_ms": 2.07,
+      "p50_ms": 2.01,
+      "p90_ms": 2.05,
+      "p95_ms": 2.06,
+      "p99_ms": 2.06,
+      "percent_of_total": 0.2
+    },
+    "Stage 8: End-to-End Total": {
+      "stage_name": "Stage 8: End-to-End Total",
+      "count": 5,
+      "mean_ms": 772.75,
+      "std_ms": 14.58,
+      "min_ms": 746.31,
+      "max_ms": 787.89,
+      "p50_ms": 773.26,
+      "p90_ms": 786.46,
+      "p95_ms": 787.17,
+      "p99_ms": 787.74,
+      "percent_of_total": 100.0
+    }
+  },
+  "raw_stage_latencies_ms": {
+    "Stage 1: Image Preprocess": [
+      11.467356258530273,
+      13.280073943048913,
+      10.82275586267031,
+      10.714578005438222,
+      11.956220839549978
+    ],
+    "Stage 2: Text Tokenization": [
+      2.9453046566395478,
+      3.8911062811661754,
+      2.9357058744366964,
+      2.943578012470061,
+      3.1698276498107925
+    ],
+    "Stage 3: Vision Encoding": [
+      90.64175848873442,
+      73.3452331531701,
+      81.01651329874593,
+      85.35882563449063,
+      83.31797803343566
+    ],
+    "Stage 4: Multi-Modal Projection": [
+      7.259370864877017,
+      9.00314908538247,
+      8.637447999654496,
+      9.324344396085682,
+      8.333224183020054
+    ],
+    "Stage 5: LLM Prefill (TTFT)": [
+      103.3309444010141,
+      108.69688907919145,
+      105.81735250888636,
+      103.88100831857506,
+      104.44026093376843
+    ],
+    "Stage 6: Token Decoding": [
+      545.7833999483743,
+      528.4494166818437,
+      572.3152496415862,
+      541.8325144138489,
+      566.8409434640083
+    ],
+    "Stage 7: Text Post-Processing": [
+      2.0661061414643256,
+      2.0087015586794754,
+      2.0243877380405313,
+      1.55704197997062,
+      1.454303795681637
+    ],
+    "Stage 8: End-to-End Total": [
+      771.9878999996581,
+      746.30740000066,
+      787.8856000024825,
+      773.2638000015868,
+      784.3155000009574
+    ]
+  }
+}
